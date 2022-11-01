@@ -46,7 +46,7 @@ pipeline {
 
         stage('Notificando o usuário') {
             steps {
-                slackSend failOnError:true (color: 'danger', message: '[ Erro ] Houve uma falha na execucao esteira, verifique: http://134.209.67.145:8080/job/kube-space/ ', tokenCredentialId: 'slack-token')
+                slackSend failOnError: true (color: 'danger', message: '[ Erro ] Houve uma falha na execucao esteira, verifique: http://134.209.67.145:8080/job/kube-space/ ', tokenCredentialId: 'slack-token')
             }
         }     
 
