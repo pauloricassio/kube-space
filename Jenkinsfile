@@ -28,7 +28,7 @@ pipeline {
                 tag_version = "${env.BUILD_ID}"
             }
             steps {
-                withKubeConfig ([credentialsId: 'kubeconfig']) {
+                withKubeConfig ([credentialsId: 'kubeconfigg']) {
                     sh 'sed -i "s/{{TAG}}/$tag_version/g" ./k8s/deployment.yml'
                     sh 'kubectl apply -f ./k8s/deployment.yml'
                 }                
@@ -38,7 +38,7 @@ pipeline {
 
         stage ('Deploy Prometheus+Grafana') {
             steps {
-                withKubeConfig ([credentialsId: 'kubeconfigg']) {
+                withKubeConfig ([credentialsId: 'kubeconfig']) {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
