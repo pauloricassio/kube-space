@@ -42,6 +42,12 @@ pipeline {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
-        }            
+        }
+
+        stage('Notificando o usuario') {
+            steps {
+                slackSend (color: 'good', message: '[ Sucesso ] O novo build esta disponivel em: http://134.209.67.145:8080/ ', tokenCredentialId: 'slack-token')
+            }
+        }     
     }
 }
