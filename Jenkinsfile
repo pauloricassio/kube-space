@@ -51,4 +51,10 @@ pipeline {
            slackSend(color: 'good', message: '[ Sucesso ] O novo build esta disponivel em: http://146.190.198.194/ ', tokenCredentialId: 'slack-token')
        }
     }
+
+    post{
+        failure{
+            slackSend(color: 'danger', message: 'Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', tokenCredentialId: 'slack-token')
+        }
+    }      
 }
