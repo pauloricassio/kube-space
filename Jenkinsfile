@@ -42,12 +42,6 @@ pipeline {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
-        }
-
-        stage('Notificando o usuário') {
-            steps {
-                slackSend failOnError:true, color: 'danger', message:"Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'slack-token'
-            }
         }     
 
     }
