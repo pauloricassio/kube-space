@@ -52,7 +52,7 @@ pipeline {
 
         stage('Notificando o usuario') {
             steps {
-                'sed -i "s/{{TAG}}/$tag_version/g" http://134.209.67.145:8080/job/kube-space/{{TAG}}/console/'
+                sh 'sed -i "s/{{TAG}}/$tag_version/g" http://134.209.67.145:8080/job/kube-space/{{TAG}}/console/'
                 slackSend failOnError:true (color: 'danger', message: '[ Erro ] Houve uma falha na execucao esteira, verifique: http://134.209.67.145:8080/job/kube-space/{{TAG}}/console/ ', tokenCredentialId: 'slack-token')
             }
         }     
