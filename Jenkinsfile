@@ -38,7 +38,7 @@ pipeline {
 
         stage ('Deploy Prometheus+Grafana') {
             steps {
-                withKubeConfig ([credentialsId: 'kubeconfig']) {
+                withKubeConfig ([credentialsId: 'kubeconfigg']) {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
@@ -52,7 +52,7 @@ pipeline {
        }
        failure{
             slackSend(color: 'danger', message: 'Build failed  - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)', tokenCredentialId: 'slack-token')
-        }
+       }
        
     }
 }
