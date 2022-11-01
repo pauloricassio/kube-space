@@ -44,13 +44,7 @@ pipeline {
             }
         }
 
-        stage('Notificando sucesso') {
-            steps {
-                slackSend (color: 'good', message: '[ Sucesso ] O novo build esta disponivel em: http://146.190.198.194/ ', tokenCredentialId: 'slack-token')
-            }
-        } 
-
-        stage('Notificando falha') {
+        stage('Notificando o usuário') {
             steps {
                 sh 'sed -i "s/{{TAG}}/$tag_version/g" http://134.209.67.145:8080/job/kube-space/{{TAG}}/console/'
                 slackSend failOnError:true (color: 'danger', message: '[ Erro ] Houve uma falha na execucao esteira, verifique: http://134.209.67.145:8080/job/kube-space/{{TAG}}/console/ ', tokenCredentialId: 'slack-token')
