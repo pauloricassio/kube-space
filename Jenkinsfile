@@ -38,7 +38,7 @@ pipeline {
 
         stage ('Deploy Prometheus+Grafana') {
             steps {
-                withKubeConfig ([credentialsId: 'kubeconfigg']) {
+                withKubeConfig ([credentialsId: 'kubeconfig']) {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
