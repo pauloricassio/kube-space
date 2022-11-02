@@ -42,9 +42,11 @@ pipeline {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
-        }
+        }     
 
-         node {
+    }
+
+    node {
            stage('SCM') {
              checkout scm
            }
@@ -54,9 +56,7 @@ pipeline {
             sh "${scannerHome}/bin/sonar-scanner"
            }
          }
-        }    
-
-    }
+        }
     
     post{ 
        success{
