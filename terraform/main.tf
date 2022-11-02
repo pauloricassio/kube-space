@@ -20,6 +20,15 @@ resource "digitalocean_droplet" "jenkins" {
 
 }
 
+resource "digitalocean_droplet" "sonarqube" {
+  image    = "ubuntu-20-04-x64"
+  name     = "sonarqube"
+  region   = var.region
+  size     = "s-2vcpu-4gb"
+  ssh_keys = [data.digitalocean_ssh_key.ssh_keys.id]
+
+}
+
 
 data "digitalocean_ssh_key" "ssh_keys" {
   name = var.ssk_key_name
