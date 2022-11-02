@@ -42,15 +42,7 @@ pipeline {
                     sh 'kubectl apply -f ./monitoramento/deploy-prometheus-grafana.yml'
                 }
             }
-        }
-
-        stage('SonarQube Analysis') {
-          def scannerHome = tool 'SonarScanner';
-          withSonarQubeEnv() {
-            sh "${scannerHome}/bin/sonar-scanner"
-           }
-        }
-            
+        }     
 
     }
     
