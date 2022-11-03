@@ -29,7 +29,6 @@ resource "digitalocean_droplet" "sonarqube" {
 
 }
 
-
 data "digitalocean_ssh_key" "ssh_keys" {
   name = var.ssk_key_name
 }
@@ -54,4 +53,8 @@ resource "local_file" "config_cluster" {
 
 output "IP" {
     value = digitalocean_droplet.jenkins.ipv4_address
+}
+
+output "IP" {
+    value = digitalocean_droplet.sonarqube.ipv4_address
 }
