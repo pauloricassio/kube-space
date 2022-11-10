@@ -51,10 +51,10 @@ resource "local_file" "config_cluster" {
     filename = "kube_config.yml"
 }
 
-output "IP" {
+output "IPJenkins" {
     value = digitalocean_droplet.jenkins.ipv4_address
 }
 
-output "IP" {
+output "IPSonarqube" {
     value = digitalocean_droplet.sonarqube.ipv4_address
 }
